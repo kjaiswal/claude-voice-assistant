@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.ClaudeAssistant" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">#F9A060</item>
+        <item name="colorPrimaryVariant">#E08040</item>
+        <item name="colorOnPrimary">#111111</item>
+        <item name="colorSecondary">#F9A060</item>
+        <item name="android:windowBackground">#111111</item>
+        <item name="android:statusBarColor">#111111</item>
+        <item name="android:navigationBarColor">#111111</item>
+    </style>
+
+    <style name="Theme.ClaudeAssistant.Assist" parent="Theme.ClaudeAssistant">
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowBackground">#111111</item>
+    </style>
+</resources>
