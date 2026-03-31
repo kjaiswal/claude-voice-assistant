@@ -101,8 +101,8 @@ adb install -r app/build/outputs/apk/debug/app-debug.apk
 **Note:** After each APK reinstall, you may need to re-set the assistant settings:
 
 ```bash
-adb shell settings put secure assistant com.lunapunks.claudeassistant/.AssistActivity
-adb shell settings put secure voice_interaction_service com.lunapunks.claudeassistant/.ClaudeVoiceInteractionService
+adb shell settings put secure assistant com.claudecode.assistant/.AssistActivity
+adb shell settings put secure voice_interaction_service com.claudecode.assistant/.ClaudeVoiceInteractionService
 ```
 
 Or use the included `deploy.sh` script which handles this automatically.
@@ -143,7 +143,7 @@ curl -X POST http://localhost:8888/voice \
 ## Known Issues
 
 - Android clears assistant settings on APK reinstall — use `deploy.sh` to auto-restore
-- The official Claude Android app has the same `ROLE_ASSISTANT` registration issue ([related discussion](https://github.com/anthropics/claude-code/issues/18189))
+- The official Claude Android app has the same `ROLE_ASSISTANT` registration issue ([related discussion](https://github.com/anthropics/claude-code/issues/41696))
 - macOS `say` TTS is functional but not neural-quality — consider Kokoro or Piper for better voices
 
 ## License

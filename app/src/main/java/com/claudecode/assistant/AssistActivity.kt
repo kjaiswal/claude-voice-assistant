@@ -1,4 +1,4 @@
-package com.lunapunks.claudeassistant
+package com.claudecode.assistant
 
 import android.Manifest
 import android.content.pm.PackageManager
@@ -31,7 +31,7 @@ import kotlin.math.sin
 class AssistActivity : AppCompatActivity() {
 
     companion object {
-        const val SERVER_URL = "http://100.99.18.69:8888"
+        const val SERVER_URL = "http://YOUR_SERVER_IP:8888"
         const val SAMPLE_RATE = 16000
         const val CHANNEL = AudioFormat.CHANNEL_IN_MONO
         const val ENCODING = AudioFormat.ENCODING_PCM_16BIT

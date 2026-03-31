@@ -1,4 +1,4 @@
-package com.lunapunks.claudeassistant
+package com.claudecode.assistant
 
 import android.os.Bundle
 import android.service.voice.VoiceInteractionSession

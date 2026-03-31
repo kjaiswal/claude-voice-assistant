@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """
-Voice Assistant Backend — ve1claude
+Voice Assistant Backend
 Accepts audio from Android app, transcribes with Parakeet MLX,
 runs Claude Code, returns text + TTS audio.
 
-Listens on 0.0.0.0:8888 (accessible via Tailscale 100.99.18.69:8888)
+Listens on 0.0.0.0:8888 (accessible via Your server IP:8888)
 """
 
 import http.server
@@ -21,7 +21,7 @@ from pathlib import Path
 from urllib.parse import urlparse, parse_qs
 
 PORT = 8888
-CLAUDE_BIN = "/opt/homebrew/bin/claude"
+CLAUDE_BIN = os.environ.get("CLAUDE_BIN", "claude")  # path to claude CLI
 AUDIO_DIR = Path("/tmp/voice_assistant_audio")
 AUDIO_DIR.mkdir(exist_ok=True)
 
@@ -64,7 +64,7 @@ def run_claude(text: str, session_id: str = None) -> str:
             capture_output=True,
             text=True,
             timeout=600,
-            cwd="/Users/ve1claude",
+            cwd=os.path.expanduser("~"),
             env=env,
         )
         if result.returncode != 0:
@@ -134,7 +134,7 @@ def generate_tts(text: str) -> str:
 
 # Session management — per-device sessions
 _sessions = {}  # device_id -> session_id
-_sessions_file = Path("/Users/ve1claude/.claude/voice_sessions.json")
+_sessions_file = Path(os.path.expanduser("~/.claude/voice_sessions.json"))
 
 def load_sessions():
     global _sessions
@@ -374,7 +374,7 @@ class VoiceHandler(http.server.BaseHTTPRequestHandler):
             wav_path = tmp.name.replace(tmp_ext, ".wav")
             try:
                 subprocess.run(
-                    ["/opt/homebrew/bin/ffmpeg", "-y", "-i", tmp.name,
+                    ["ffmpeg", "-y", "-i", tmp.name,
                      "-ar", "16000", "-ac", "1", "-f", "wav", wav_path],
                     check=True, capture_output=True, timeout=30,
                 )
@@ -460,7 +460,7 @@ def main():
 
     server = ThreadedHTTPServer(("0.0.0.0", PORT), VoiceHandler)
     print(f"Voice Assistant server on http://0.0.0.0:{PORT}")
-    print(f"  Tailscale: http://100.99.18.69:{PORT}")
+    print(f"  Tailscale: http://YOUR_SERVER_IP:{PORT}")
     print(f"  Endpoints:")
     print(f"    POST /voice         — audio or text → transcribe → Claude → TTS")
     print(f"    POST /transcribe    — audio → text only")

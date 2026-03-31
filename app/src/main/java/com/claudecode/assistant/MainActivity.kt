@@ -1,4 +1,4 @@
-package com.lunapunks.claudeassistant
+package com.claudecode.assistant
 
 import android.app.role.RoleManager
 import android.content.Intent

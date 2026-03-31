@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.lunapunks.claudeassistant"
+    namespace = "com.claudecode.assistant"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.lunapunks.claudeassistant"
+        applicationId = "com.claudecode.assistant"
         minSdk = 28
         targetSdk = 35
         versionCode = 1
