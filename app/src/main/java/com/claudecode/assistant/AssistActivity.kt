@@ -31,7 +31,7 @@ import kotlin.math.sin
 class AssistActivity : AppCompatActivity() {
 
     companion object {
-        const val SERVER_URL = "http://YOUR_SERVER_IP:8888"
+        const val SERVER_URL = "http://ve1s-mac-studio.tail4d6fcb.ts.net:8888"
         const val SAMPLE_RATE = 16000
         const val CHANNEL = AudioFormat.CHANNEL_IN_MONO
         const val ENCODING = AudioFormat.ENCODING_PCM_16BIT
